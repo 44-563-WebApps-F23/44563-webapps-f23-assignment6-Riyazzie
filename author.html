@@ -1,66 +1,42 @@
 <!DOCTYPE html>
 <html>
- <head>Author entry Riyaz</head>
- <title>Author</title>
+ <head>
+    <title>Gussing the</title>
+ </head>
 <body>
 
-<h2>Getting input</h2>
+<h2>Author entry Riyaz</h2>
 
 <form>
-    <label for="form1_age">What is your age </label>
-    <input type ="number" id="form1_age" name="form1_age" min=10 max=50 step=2 value=30> <br>
+    <label for="secretvalue">The hidden author name</label>
+    <input type="password" value="Dickens" name="secretvalue" id="secretvalue">
+    <br><br>
+    <label for="input">Guess the author</label>
+    <input type="text" id="input">
+    <br><br>
+    <button type="button" onclick="checkAuthor()">check the Guess</button>
+    <br><br>
+    <p>Good:<span id="goodCount">0</span></p>
+    <p>oops:<span id="oppsCount">0</span></p>
 
-    <label for="form1_nick">What is your nickname </label>
-    <input type ="text" id="form1_nick" name="form1_nick" autofocus> <br>
-
-    <input type="button" onclick="resolveForm()" value="Get values from form">
-</form>
-
-
-<p id="result">This text will be replaced </p>
-
-<script> 
-
-function resolveForm (){
-    console.log("Getting form values")
-    age = document.getElementById("form1_age").value
-    nick = document.getElementById("form1_nick").value
-    confirmed = confirm("Are these the values? "+age+" and "+nick)
-    
-    out = document.getElementById("result")
-    if(confirmed){
-        out.innerHTML = "Values were confirmed"
-    } else {
-        out.innerHTML = "Values were not confirmed"
-    }
-}
-</script>
-<form id="authorForm">
-    <label for="secretAuthor">The hidden author name:</label>
-    <input type="password" id="secretAuthor" value="Dickens">
-    <label for="guessAuthor">Guess the Author:</label>
-    <input type="text" id="guessAuthor">
-    <button type="button" onclick="checkAuthor()">Check the Guess</button>
-    <p id="result"></p>
 </form>
 <script>
-    var good = 0;
-    var oops = 0;
+    var good=0;
+    var oops=0;
     function checkAuthor(){
-        const secretAuthor = document.getElementById('secretAuthor').value;
-        const guessAuthor = document.getElementById('guessAuthor').value;
-        if(secretAuthor===guessAuthor)
-        {
+        var original=document.getElementById("secretvalue").value
+        var guess=document.getElementById("input").value
+        if(original==guess){
             good++;
-            alert('you got it right');
-        }
-        else
-        {
+            alert("you got it right");
+        }else{
             oops++;
-            alert('Sorry');
+            alert("sorry");
         }
-        document.getElementById('result').innerHTML = `right: ${good}, wrong: ${oops}`;
+        document.getElementById("goodCount").innerHTML=good;
+        document.getElementById("oppsCount").innerHTML=oops;
     }
 </script>
+
 </body>
-</html> 
+</html>
