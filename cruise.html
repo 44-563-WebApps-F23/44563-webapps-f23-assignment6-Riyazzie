@@ -1,72 +1,77 @@
 <!DOCTYPE html>
 <html>
- <head>
+
+<head>
     <title>Cruise</title>
- </head>
-<body>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        /* Add custom styles if needed */
+        .result-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
 
-<h1>Riyaz Hussain Shaik goes on a cruise</h1>
-<form>
-    <input type="checkbox" id="flash" name="shared" value="true">
-    <lable for="flash">Shares Cabin</lable><br>
+<body class="container mt-4">
 
-    <input type="checkbox" id="robin" name="break" value="true">
-    <lable for="robin">Breakfast</lable><br>
+    <h1 class="display-4">Riyaz Hussain Shaik goes on a cruise</h1>
 
-    <input type="checkbox" id="wonderwomen" name="Pool" value="false">
-    <lable for="wonderwomen">Pool Pass</lable><br>
+    <form>
+        <div class="form-check">
+            <input type="checkbox" id="flash" name="shared" value="true" class="form-check-input">
+            <label class="form-check-label" for="flash">Shares Cabin</label><br>
+        </div>
 
-    <input type="button" value="Select a cruise" onclick="selectCruise()">
-</form>
-<p id="resultCheck">This text will be replaced </p>
-<form>
-    <label for="days">Enter the number of days</label>
-    <input type ="text" id="days" name="days" value=days> <br>
+        <div class="form-check">
+            <input type="checkbox" id="robin" name="break" value="true" class="form-check-input">
+            <label class="form-check-label" for="robin">Breakfast</label><br>
+        </div>
 
-    <label for="price">Enter price</label>
-    <input type ="text" id="price" name="price" autofocus> <br>
+        <div class="form-check">
+            <input type="checkbox" id="wonderwomen" name="Pool" value="false" class="form-check-input">
+            <label class="form-check-label" for="wonderwomen">Pool Pass</label><br>
+        </div>
 
-    <input type="button" onclick="updateCruise()" value="Update the cruise">
-</form>
+        <button type="button" onclick="selectCruise()" class="btn btn-primary">Select a cruise</button>
+    </form>
 
-<script> 
-var  my_cruise={};
-function selectCruise(){
-    my_cruise={};
-  if(document.getElementById("flash").checked) {
-    my_cruise["shared"]=true;
-  }
-  else
-  my_cruise.shared=false;
+    <p id="resultCheck" class="mt-3">This text will be replaced</p>
 
-  if(document.getElementById("robin").checked) {
-    my_cruise.breakfast=true;
-  }
-  else
-  my_cruise.breakfast=false;
+    <form>
+        <div class="form-group">
+            <label for="days">Enter the number of days</label>
+            <input type="text" id="days" name="days" value="days" class="form-control">
+        </div>
 
-  if(document.getElementById("wonderwomen").checked) {
-    my_cruise.pool=true;
-  }
-  else
-  my_cruise.pool=false;
-  
-  document.getElementById("resultCheck").innerHTML="shared: " + my_cruise.shared + "; breakfast: "+my_cruise.breakfast+"; pool: "+my_cruise.pool+";";
-}
+        <div class="form-group">
+            <label for="price">Enter price</label>
+            <input type="text" id="price" name="price" autofocus class="form-control">
+        </div>
 
+        <button type="button" onclick="updateCruise()" class="btn btn-primary">Update the cruise</button>
+    </form>
 
+    <script>
+        var my_cruise = {};
 
-function updateCruise(){
-    
-    var days = document.getElementById("days").value;
-    var price = document.getElementById("price").value;
-    my_cruise["days"]=days;
-    my_cruise["price"]=price;
-    document.getElementById("resultCheck").innerHTML="shared: " + my_cruise.shared + "; breakfast: "+my_cruise.breakfast+"; pool: "+my_cruise.pool+"; days: "+my_cruise.days+"; price: "+my_cruise.price+";";  
-}
+        function selectCruise() {
+            my_cruise = {};
+            my_cruise.shared = document.getElementById("flash").checked;
+            my_cruise.breakfast = document.getElementById("robin").checked;
+            my_cruise.pool = document.getElementById("wonderwomen").checked;
 
+            document.getElementById("resultCheck").innerHTML = "Shared: " + my_cruise.shared + "; Breakfast: " + my_cruise.breakfast + "; Pool: " + my_cruise.pool + ";";
+        }
 
-</script>
+        function updateCruise() {
+            var days = document.getElementById("days").value;
+            var price = document.getElementById("price").value;
+            my_cruise.days = days;
+            my_cruise.price = price;
+            document.getElementById("resultCheck").innerHTML = "Shared: " + my_cruise.shared + "; Breakfast: " + my_cruise.breakfast + "; Pool: " + my_cruise.pool + "; Days: " + my_cruise.days + "; Price: " + my_cruise.price + ";";
+        }
+    </script>
 
 </body>
+
 </html>
